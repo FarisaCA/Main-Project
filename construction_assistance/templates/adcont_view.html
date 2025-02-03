@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Contactors</title>
+</head>
+<body>
+    <h1>View Contractors</h1>
+    <table border="3">
+        <tr><th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Company Name</th>
+        <th>Service Category</th>
+        <th>Experience</th>
+        <th>Certificates</th>
+        <th>Working Hrs</th>
+        </tr>
+        {% for a in contractor %}
+        <tr>
+            <td>{{a.name}}</td>
+            <td>{{a.email}}</td>
+            <td>{{a.phone}}</td>
+            <td>{{a.cmp_name}}</td>
+            <td>{{a.srv_cat}}</td>
+            <td>{{a.expc}}</td>
+            <td>{{a.certi}}</td>
+            <td>{{a.wrk_hrs}}</td>
+        </tr>
+        {% endfor %}   
+</body>
+</html>

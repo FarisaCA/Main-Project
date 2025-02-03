@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worker Registration</title>
+    <style>
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        h1{
+          text-align: center;  
+        }
+    </style>
+</head>
+<body>
+    <h1>Worker Registration</h1>
+    <form method="post"> 
+        {%csrf_token%}
+        <label>Name:</label>
+        <input type="text" name="name" placeholder="Enter Your Name"><br><br>
+        <label>Email:</label>
+        <input type="email" name="email" value="@gmail.com"><br><br>
+        <label>Phone:</label>
+        <input type="tel" name="tele" placeholder="Enter Your Phone"><br><br>
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter password" ><br><br>
+        <label>Skills</label>
+        <textarea rows=6 cols=6 name="skills"></textarea><br><br>
+        <label>Experience</label>
+        <textarea rows=4 cols=4 name="expc">
+        <label>preferred-Work Location</label>
+        <button type="submit">Register</button>
+    </form>
+    {% if messages %}
+    {% for messages  in messages %}
+    <script>
+      alert('{{messages}}')
+    </script>
+    {% endfor %}
+    {% endif %}
+</body>
+</html>

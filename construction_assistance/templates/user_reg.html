@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        h1{
+          text-align: center;  
+        }
+    </style>
+</head>
+<body>
+    <h1>User Registration</h1>
+    <form method="post"> 
+        {%csrf_token%}
+        <label>Name:</label>
+        <input type="text" name="name" placeholder="Enter Your Name"><br><br>
+        <label>Email:</label>
+        <input type="email" name="email" value="@gmail.com"><br><br>
+        <label>Phone:</label>
+        <input type="tel" name="tele" placeholder="Enter Your Phone"><br><br>
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter password" ><br><br>
+        <label>Service Needed:</label>
+        <select name="srv_need">
+        <option selected hidden>-Service Categories-</option>
+        <option value="General Construction">General Construction</option>
+        <option value="Rennovation">Rennovation</option>
+        <option value="Electrical">Electrical</option>
+        <option value="Plumbing">Plumbing</option>
+        </select><br><br>
+        <label>Preferred Date&Time</label>
+        <input type="" name="" placeholder="" ><br><br>
+        <label>Service Location</label>
+        <label>Budget</label>
+        <button type="submit">Register</button>
+    </form>
+    {% if messages %}
+    {% for messages  in messages %}
+    <script>
+      alert('{{messages}}')
+    </script>
+    {% endfor %}
+    {% endif %}
+</body>
+</html>
