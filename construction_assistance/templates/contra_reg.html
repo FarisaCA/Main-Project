@@ -20,32 +20,41 @@
 </head>
 <body>
     <h1>Contractor Registration</h1>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {%csrf_token%}
         <label>Name:</label>
-        <input type="text" name="name" placeholder="Enter Your Name" required><br><br>
+        <input type="text" name="name" placeholder="Enter Your Name" pattern="[A-Za-z]{,}" required><br><br>
+
         <label>Email:</label>
         <input type="email" name="email" value="@gmail.com" required><br><br>
+
         <label>Phone:</label>
-        <input type="tel" name="tele" placeholder="Enter Your Phone"><br><br>
+        <input type="tel" name="tele" placeholder="Enter Your Phone" pattern="[6789][0-9]{9}" maxlength="10" required><br><br>
+
         <label>Password</label>
-        <input type="password" name="password" placeholder="Enter password" ><br><br>
+        <input type="password" name="password" placeholder="Enter password" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" required><br><br>
+
         <label>Company Name:</label>
         <input type="text" name="cmp_name" placeholder="Company Name"><br><br>
+
         <label>Service Category:</label>
-        <select name="srv_cat">
+        <select name="srv_cat" required>
         <option selected hidden>-Service Categories-</option>
         <option value="General Construction">General Construction</option>
         <option value="Rennovation">Rennovation</option>
         <option value="Electrical">Electrical</option>
         <option value="Plumbing">Plumbing</option>
         </select><br><br>
+
         <label>Experience:</label>
         <input type="text" name="expc" placeholder="Experience"><br><br>
+
         <label>Certificates:</label>
         <input type="file" name="certi"><br><br>
+
         <label>Working hours:</label>
         <textarea rows=4 cols=6 name="wrk_hrs"></textarea><br><br>
+        
         <input type="submit" value="Register">
     </form>
     {% if messages %}

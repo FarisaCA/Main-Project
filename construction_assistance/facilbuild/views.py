@@ -18,8 +18,10 @@ def login(request):
                 return redirect('/admin_home')
             elif user.usertype=='contractor':
                  return redirect('/contra_home')
-            elif user.usertype=='manager':
-                return redirect('/managerhome')
+            elif user.usertype=='user':
+                return redirect('/user_home')
+            elif user.usertype=='worker':
+                return redirect('/worker_home')
             else:
                 messages.error(request,'Invalid Username or Password')
     return render(request,"login.html")
@@ -32,14 +34,15 @@ def contra_reg(request):
         cmp_name=request.POST['cmp_name']
         srv_cat=request.POST['srv_cat']
         expc=request.POST['expc']
-        certifi=request.FILES['certi']
+        certi=request.FILES['certi']
         wrk_hrs=request.POST['wrk_hrs']
         if login_tbl.objects.filter(username=email).exists():
             messages.error(request,'User already exists')
         else:
             log=login_tbl.objects.create_user(username=email,password=password,usertype='contractor')
             log.save()
-            contractor=Contractor.objects.create(name=name,email=email,phone=phone,cmp_name=cmp_name,srv_cat=srv_cat,expc=expc,certi=certifi,wrk_hrs=wrk_hrs,user=log)
+            contractor=Contractor.objects.create(name=name,email=email,phone=phone,cmp_name=cmp_name,
+            srv_cat=srv_cat,expc=expc,certi=certi,wrk_hrs=wrk_hrs,user=log)
             contractor.save()
             messages.success(request,'Registration Successfull')
             return redirect("/login")
@@ -85,6 +88,10 @@ def worker_reg(request):
     return render(request,"worker_reg.html") 
 def admin_home(request):
     return render(request,"admin_home.html")
+def worker_home(request):
+    return render(request,"worker_home.html")
+def user_home(request):
+    return render(request,"user_home.html")
 def adcont_view(request):
     contractor=Contractor.objects.all()
     return render(request,"adcont_view.html",{"contractor":contractor}) 
@@ -94,3 +101,31 @@ def adwr_view(request):
 def adusr_view(request):
     user=User.objects.all()
     return render(request,"adusr_view.html",{"user":user}) 
+def admin_approval_contractor(request):
+    uid=request.GET.get("id")
+    contractor=login_tbl.objects.get(id=uid)
+    contractor.is_active=1
+    contractor.save()
+    messages.success(request,"Approved successfully")
+    return redirect("/adcont_view")
+def admin_approval_user(request):
+    uid=request.GET.get("id")
+    user=login_tbl.objects.get(id=uid)
+    user.is_active=1
+    user.save()
+    messages.success(request,"Approved successfully")
+    return redirect("/adusr_view")
+def admin_reject_contractor(request):
+    uid=request.GET.get("id")
+    contractor=login_tbl.objects.get(id=uid)
+    contractor.is_active=0
+    contractor.save()
+    messages.success(request,"Rejected successfully")
+    return redirect("/adcont_view")
+def admin_reject_user(request):
+    uid=request.GET.get("id")
+    user=login_tbl.objects.get(id=uid)
+    user.is_active=0
+    user.save()
+    messages.success(request,"Rejected successfully")
+    return redirect("/adusr_view")

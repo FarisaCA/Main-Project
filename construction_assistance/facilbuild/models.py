@@ -11,7 +11,7 @@ class Contractor(models.Model):
     cmp_name=models.CharField(max_length=100)
     srv_cat=models.CharField(max_length=100)
     expc=models.CharField(max_length=100)
-    certi=models.ImageField(max_length=None)
+    certi=models.ImageField(null=True)
     wrk_hrs=models.CharField(max_length=100)
     user=models.ForeignKey(login_tbl, on_delete=models.CASCADE,null=True)
 class Worker(models.Model):
@@ -27,3 +27,4 @@ class User(models.Model):
     phone=models.IntegerField()
     address=models.CharField(max_length=100)
     city=models.CharField(max_length=100)
+    user=models.ForeignKey(login_tbl, on_delete=models.CASCADE,null=True)
