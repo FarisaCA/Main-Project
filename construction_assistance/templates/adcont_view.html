@@ -27,9 +27,17 @@
             <td>{{a.expc}}</td>
             <td>{{a.certi}}</td>
             <td>{{a.wrk_hrs}}</td>
-            <td><a href="">Approve</a></td>
-            <td><a href="">Reject</a></td>
+            <td><a href="/admin_approval_contractor?id={{a.id}}">Approve</a></td>
+            <td><a href="/admin_reject_contractor?id={{a.id}}">Reject</a></td>
         </tr>
         {% endfor %}   
+    </table>
+    {% if messages %}
+    {% for messages in messages %}
+    <script>
+      alert('{{messages}}')
+    </script>
+    {% endfor %}
+    {% endif %}
 </body>
 </html>

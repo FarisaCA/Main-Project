@@ -103,29 +103,29 @@ def adusr_view(request):
     return render(request,"adusr_view.html",{"user":user}) 
 def admin_approval_contractor(request):
     uid=request.GET.get("id")
-    contractor=login_tbl.objects.get(id=uid)
-    contractor.is_active=1
-    contractor.save()
+    contractor=Contractor.objects.get(id=uid)
+    contractor.user.is_active=1
+    contractor.user.save()
     messages.success(request,"Approved successfully")
     return redirect("/adcont_view")
 def admin_approval_user(request):
     uid=request.GET.get("id")
-    user=login_tbl.objects.get(id=uid)
-    user.is_active=1
-    user.save()
+    user=User.objects.get(id=uid)
+    user.user.is_active=1
+    user.user.save()
     messages.success(request,"Approved successfully")
     return redirect("/adusr_view")
 def admin_reject_contractor(request):
     uid=request.GET.get("id")
-    contractor=login_tbl.objects.get(id=uid)
-    contractor.is_active=0
-    contractor.save()
+    contractor=Contractor.objects.get(id=uid)
+    contractor.user.is_active=0
+    contractor.user.save()
     messages.success(request,"Rejected successfully")
     return redirect("/adcont_view")
 def admin_reject_user(request):
     uid=request.GET.get("id")
-    user=login_tbl.objects.get(id=uid)
-    user.is_active=0
-    user.save()
+    user=User.objects.get(id=uid)
+    user.user.is_active=0
+    user.user.save()
     messages.success(request,"Rejected successfully")
     return redirect("/adusr_view")
