@@ -26,4 +26,8 @@ urlpatterns = [
     path('contra_home/', views.contra_home),
     path('admin_home/', views.admin_home),
     path('adcont_view/', views.adcont_view),
+    path('worker_reg/' , views.worker_reg),
+    path('adwr_view/' , views.adwr_view),
+    path('user_reg/' , views.user_reg),
+    path('adusr_view/' , views.adusr_view),
 ]

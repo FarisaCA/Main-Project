@@ -30,18 +30,10 @@
         <input type="tel" name="tele" placeholder="Enter Your Phone"><br><br>
         <label>Password</label>
         <input type="password" name="password" placeholder="Enter password" ><br><br>
-        <label>Service Needed:</label>
-        <select name="srv_need">
-        <option selected hidden>-Service Categories-</option>
-        <option value="General Construction">General Construction</option>
-        <option value="Rennovation">Rennovation</option>
-        <option value="Electrical">Electrical</option>
-        <option value="Plumbing">Plumbing</option>
-        </select><br><br>
-        <label>Preferred Date&Time</label>
-        <input type="" name="" placeholder="" ><br><br>
-        <label>Service Location</label>
-        <label>Budget</label>
+        <label>Address</label>
+        <textarea rows="4" cols="4" name="address"></textarea><br><br>
+        <label>City</label>
+        <input type="text" name="city" placeholder="Enter Your City"><br><br>
         <button type="submit">Register</button>
     </form>
     {% if messages %}
